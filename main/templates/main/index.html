@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    <h1>Здесь может быть ваша реклама</h1>
+    <p>Ну а пока тут только котики</p>
+    {% load static %}
+    <img src="{% static 'img/image3.jpg' %}" alt="photo">
+{% endblock %}

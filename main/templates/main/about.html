@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Информация
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">
+     <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit">Отправить письмо</button>
+        </div>
+    </form>
+    </h1>
+{% endblock %}
