@@ -29,3 +29,7 @@ def sendmail(request):
 
 def sent(request):
     return render(request, 'main/sent.html')
+
+
+def egg(request):
+    return render(request, 'main/egg.html')

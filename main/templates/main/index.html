@@ -5,8 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Здесь может быть ваша реклама</h1>
-    <p>Ну а пока тут только котики</p>
+    <h1 align="middle">Здесь может быть ваша реклама</h1>
+    <p align="middle" >Ну а пока тут только котик</p>
     {% load static %}
-    <img src="{% static 'img/image3.jpg' %}" alt="photo">
+    <img class='marginauto' src="{% static 'img/image6.jpg' %}" alt="photo">
+
+    <style>
+    .marginauto {
+        margin: 10px auto 20px;
+        display: block;
+    }
+
+    </style>
 {% endblock %}
