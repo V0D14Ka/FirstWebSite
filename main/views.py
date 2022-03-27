@@ -33,3 +33,7 @@ def sent(request):
 
 def egg(request):
     return render(request, 'main/egg.html')
+
+
+def weather(request):
+    return render(request, 'main/weather.html')

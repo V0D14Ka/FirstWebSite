@@ -9,19 +9,27 @@
     <link rel="shortcut icon" href="{%  static 'favicon.png' %}">
 </head>
 <body>
+<header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a href="egg" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="btn btn-primary">VoD14ka</span>
-      </a>
-
+      <a href="egg" class="btn btn-primary">VoD14ka</a>
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="green" href="/">Главная</a>
-        <a class="green" href="sendmail">Отправить</a>
+          <a class="green" href="/">Главная</a>
+          <a class="green" href="sendmail">Отправить</a>
+          <a class="green" href="weather">Погода</a>
       </nav>
     </div>
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-
+    <style>
+        header
+        {
+            width: 100%;
+            height: 93px;
+            background: #5b80b2;
+            box-shadow: 0 15px 20px rgba(0,0,0,.1);
+        }
+    </style>
+</header>
 </body>
 </html>

@@ -7,7 +7,12 @@
 {% block content %}
     {% load static %}
     <h1 class="text-center">Поздравляю, вы нашли пасхалку!</h1>
-    <center>
-        <img src="{% static 'img/image4.jpg' %}" alt="photo">
-    </center>
+        <img class="marginauto" src="{% static 'img/image4.jpg' %}" alt="photo">
+    <style>
+    .marginauto {
+        margin: 10px auto 20px;
+        display: block;
+        box-shadow: 0 15px 20px rgba(0,0,0,.1);
+    }
+    </style>
 {% endblock %}
