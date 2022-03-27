@@ -6,6 +6,7 @@
 
 {% block content %}
     <form method="post">
+    <h2>Здесь вы можете узнать погоду в интересующем вас городе</h2>
         {% csrf_token %}
              <div class="form-group">
             {{ form.as_p }}
