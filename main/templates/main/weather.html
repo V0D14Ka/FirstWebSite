@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">В разработке...</h1>
+    <form method="post">
+        {% csrf_token %}
+             <div class="form-group">
+            {{ form.as_p }}
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Узнать погоду">
+            </div>
+        </form>
 {% endblock %}

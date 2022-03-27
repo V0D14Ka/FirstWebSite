@@ -12,3 +12,9 @@ class EmailForm(forms.Form):
                                                                      'style': 'width: 250px; height: 150px;',
                                                                      'class': 'form-control'}), required=True)
 
+
+class WeatherForm(forms.Form):
+    place = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Город',
+                                                                      'style': 'width: 250px;',
+                                                                      'class': 'form-control'}), required=True)
+

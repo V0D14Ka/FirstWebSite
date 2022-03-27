@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Информация
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Погода в городе {{ place }} в текущий момент.</h2>
+    <ul>
+        <li><output>Температура воздуха: {{ temp }} градусов по Цельсию.</output></li>
+        <li><output>Ощущается как: {{ feel_like }} градусов по Цельсию.</output></li>
+        <li><output>Порывы ветра достигают: {{ wind }} м/с.</output></li>
+        <li><output>Статус: {{ status }}.</output></li>
+    </ul>
+{% endblock %}
