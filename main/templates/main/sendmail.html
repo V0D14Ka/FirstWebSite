@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-    Информация
+    Отправить письмо
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-actions">
-            <button type="submit">Отправить письмо</button>
+            <button type="submit">Отправить послание</button>
         </div>
     </form>
     </h1>

@@ -24,7 +24,7 @@ def sendmail(request):
             except BadHeaderError:
                 return HttpResponse('Invalid Header found')
             return redirect('sent')
-    return render(request, 'main/about.html', {'form': form})
+    return render(request, 'main/sendmail.html', {'form': form})
 
 
 def sent(request):
