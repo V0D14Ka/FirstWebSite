@@ -15,6 +15,7 @@ config_dict['language'] = 'ru'
 owm = OWM('c16d779e903477e532485d9034029c6f', config_dict)
 mgr = owm.weather_manager()
 
+
 def index(request):
     return render(request, 'main/index.html')
 
@@ -36,10 +37,6 @@ def sendmail(request):
                 return HttpResponse('Invalid Header found')
             return render(request, 'main/sent.html', context=data)
     return render(request, 'main/sendmail.html', {'form': form})
-
-
-def sent(request):
-    return render(request, 'main/sent.html')
 
 
 def egg(request):
