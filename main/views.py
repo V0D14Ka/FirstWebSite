@@ -29,11 +29,12 @@ def sendmail(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = "vodi4kaweb@mail.ru"
+            data = {'email': email}
             try:
                 send_mail(subject, message, from_email, [email])
             except BadHeaderError:
                 return HttpResponse('Invalid Header found')
-            return redirect('sent')
+            return render(request, 'main/sent.html', context=data)
     return render(request, 'main/sendmail.html', {'form': form})
 
 
