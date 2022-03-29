@@ -2,17 +2,18 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from pyowm.commons.exceptions import PyOWMError
-
+import os
 from .forms import EmailForm
 from .forms import WeatherForm
 from django.http import HttpResponse, HttpResponseRedirect
 from pyowm import OWM
 from pyowm.utils.config import get_default_config
+key_pyowm = os.environ['key_pyowm']
 
 config_dict = get_default_config()
 config_dict['language'] = 'ru'
 
-owm = OWM('c16d779e903477e532485d9034029c6f', config_dict)
+owm = OWM(key_pyowm, config_dict)
 mgr = owm.weather_manager()
 
 

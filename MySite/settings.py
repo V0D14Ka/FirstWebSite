@@ -139,6 +139,7 @@ EMAIL_PORT = 2525
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+key_pyowm = os.environ['key_pyowm']
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
