@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from django.views.defaults import server_error, page_not_found, permission_denied
+# from django.views.defaults import server_error, page_not_found, permission_denied#
 
 
 urlpatterns = [

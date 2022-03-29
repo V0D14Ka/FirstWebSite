@@ -5,3 +5,4 @@ pyowm~=3.3.0
 python-dotenv~=0.20.0
 dj_database_url
 psycopg2
+Pillow
