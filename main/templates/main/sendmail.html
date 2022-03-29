@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <center>
     <h2>Здесь вы можете отправить электронное письмо</h2>
      <form method="post">
         {% csrf_token %}
@@ -15,4 +16,5 @@
                 <input class="btn btn-primary" type="submit" value="Отправить">
             </div>
         </form>
+    </center>
 {% endblock %}
