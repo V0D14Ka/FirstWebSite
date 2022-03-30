@@ -8,6 +8,7 @@ from .forms import WeatherForm
 from django.http import HttpResponse, HttpResponseRedirect
 from pyowm import OWM
 from pyowm.utils.config import get_default_config
+from .models import *
 key_pyowm = os.environ['key_pyowm']
 
 config_dict = get_default_config()
@@ -18,7 +19,8 @@ mgr = owm.weather_manager()
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    posts = Post.objects.all()
+    return render(request, 'main/index.html', {'posts': posts})
 
 
 def sendmail(request):

@@ -9,4 +9,9 @@
     <p class="text-center">Ну а пока тут только котик...</p>
     {% load static %}
     <img class='imagecenter' src="{% static 'img/image6.jpg' %}" alt="photo">
+    <ul>
+    {% for p in posts%}
+        <li>{{ p.title }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
