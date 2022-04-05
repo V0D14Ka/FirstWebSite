@@ -76,4 +76,4 @@ def weather(request):
 
 
 def horoscope(request):
-    return render(request, 'main/horoscope.html')
+    return render(request, 'main/development.html')
