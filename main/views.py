@@ -73,3 +73,7 @@ def weather(request):
                     "wind": wind}
             return render(request, 'main/goodweather.html', context=data)
     return render(request, 'main/weather.html', {'form': form})
+
+
+def horoscope(request):
+    return render(request, 'main/horoscope.html')

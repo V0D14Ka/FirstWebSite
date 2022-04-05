@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.index, name='homepage'),
     path('sendmail', views.sendmail, name='sendmail'),
     path('egg', views.egg, name='egg'),
-    path('weather', views.weather, name='weather')
+    path('weather', views.weather, name='weather'),
+    path('horoscope', views.horoscope, name='horoscope')
 ]
