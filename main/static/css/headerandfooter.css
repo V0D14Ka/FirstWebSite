@@ -1,10 +1,21 @@
- #footer
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+
+#footer
  {
-     position: fixed; /* Фиксированное положение */
-     left: 0; bottom: 0; /* Левый нижний угол */
      padding: 7px; /* Поля вокруг текста */
      color: #5b80b2; /* Цвет текста */
      width: 100%; /* Ширина слоя */
+    flex: 0 0 auto;
  }
 
  header
