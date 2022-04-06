@@ -7,3 +7,4 @@ dj_database_url
 psycopg2
 Pillow
 bs4
+requests~=2.27.1

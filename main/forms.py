@@ -15,6 +15,22 @@ class EmailForm(forms.Form):
 
 class WeatherForm(forms.Form):
     place = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Город',
-                                                                      'style': 'width: 250px;',
-                                                                      'class': 'form-control'}), required=True)
+                                                                    'style': 'width: 250px;',
+                                                                    'class': 'form-control'}), required=True)
 
+
+class HoroscopeForm(forms.Form):
+    sign_choices = (("oven", "Овен"),
+                    ("telets", "Телец"),
+                    ("bliznetsi", "Близнецы"),
+                    ("rac", "Рак"),
+                    ("lev", "Лев"),
+                    ("deva", "Дева"),
+                    ("vesy", "Весы"),
+                    ("scorpion", "Скорпион"),
+                    ("strelets", "Стрелец"),
+                    ("kozerog", "Козерог"),
+                    ("vodoley", "Водолей"),
+                    ("riby", "Рыбы"),
+                    )
+    sign = forms.ChoiceField(label="Знак зодиака", choices=sign_choices)

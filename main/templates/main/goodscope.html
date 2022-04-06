@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Гороскоп
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <h1 class="text-center">Гороскоп для {{ sign }} на сегодня:</h1>
+    <h3>{{ scope }}</h3>
+    {% if sign == "oven" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/oven.jpg' %}" alt="photo">
+    {% elif sign == "telets" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/telets.jpg' %}" alt="photo">
+    {% elif sign == "bliznetsi" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/bliznetsy.jpg' %}" alt="photo">
+    {% elif sign == "rac" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/rac.jpg' %}" alt="photo">
+    {% elif sign == "lev" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/lev.jpg' %}" alt="photo">
+    {% elif sign == "deva" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/deva.jpg' %}" alt="photo">
+    {% elif sign == "vesy" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/vesy.jpg' %}" alt="photo">
+    {% elif sign == "scorpion" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/scorpion.jpg' %}" alt="photo">
+    {% elif sign == "strelets" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/strelets.png' %}" alt="photo">
+    {% elif sign == "kozerog" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/kozerog.jpg' %}" alt="photo">
+    {% elif sign == "vodoley" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/vodoley.jpg' %}" alt="photo">
+    {% elif sign == "riby" %}
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/riby.jpg' %}" alt="photo">
+    {% endif %}
+{% endblock %}

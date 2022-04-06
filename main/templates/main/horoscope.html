@@ -6,6 +6,17 @@
 
 {% block content %}
     {% load static %}
-    <h1 class="text-center">В разработке...</h1>
-    <img class="imagecenter" src="{% static 'img/development.jpg' %}" alt="photo">
+    <center>
+    <form method="post">
+    <h1>Здесь вы можете узнать гороскоп на сегодня!</h1>
+        {% csrf_token %}
+             <div class="form-group">
+            {{ form.as_p }}
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Узнать гороскоп">
+            </div>
+        </form>
+    <img class="imagecenter" src="{% static 'img/zodiac_signs/all.jpg' %}" alt="photo">
+    </center>
 {% endblock %}

@@ -1,10 +1,16 @@
+from bs4 import BeautifulSoup
+from django.contrib.sites import requests
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from pyowm.commons.exceptions import PyOWMError
 import os
+import requests
+from requests import RequestException
+
 from .forms import EmailForm
 from .forms import WeatherForm
+from .forms import HoroscopeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from pyowm import OWM
 from pyowm.utils.config import get_default_config
@@ -76,4 +82,19 @@ def weather(request):
 
 
 def horoscope(request):
-    return render(request, 'main/development.html')
+    if request.method == 'GET':
+        form = HoroscopeForm()
+    else:
+        form = HoroscopeForm(request.POST)
+        if form.is_valid():
+            ssign = form.cleaned_data['sign']
+            try:
+                res = requests.get(f"https://www.astrostar.ru/horoscopes/main/{ssign}/day.html")
+            except RequestException:
+                return HttpResponse('Invalid Request to Horoscope')
+            soup = BeautifulSoup(res.content, 'html.parser')
+            data = soup.find("p")
+            content = {"scope": data.text,
+                       'sign': ssign}
+            return render(request, 'main/goodscope.html', context=content)
+    return render(request, 'main/horoscope.html', {'form': form})
