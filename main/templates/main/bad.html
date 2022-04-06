@@ -1,11 +1,11 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-    Погода
+    Ошибка
 {% endblock %}
 
 {% block content %}
     {% load static %}
-    <h2 class="text-center">Вы ввели некорректный город!</h2>
+    <h2 class="text-center">Неккоректный запрос!</h2>
     <img class='imagecenter' src="{% static 'img/badweather.jpeg' %}" alt="photo">
 {% endblock %}

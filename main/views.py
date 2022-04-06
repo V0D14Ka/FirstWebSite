@@ -42,8 +42,8 @@ def sendmail(request):
             data = {'email': email}
             try:
                 send_mail(subject, message, from_email, [email])
-            except BadHeaderError:
-                return HttpResponse('Invalid Header found')
+            except:
+                return render(request, 'main/bad.html')
             return render(request, 'main/sent.html', context=data)
     return render(request, 'main/sendmail.html', {'form': form})
 
@@ -62,7 +62,7 @@ def weather(request):
             try:
                 observation = mgr.weather_at_place(pplace)
             except PyOWMError:
-                return render(request, 'main/badweather.html')
+                return render(request, 'main/bad.html')
             w = observation.weather
             temp = w.temperature('celsius')['temp']
             max_temp = w.temperature('celsius')['temp_max']
@@ -90,8 +90,8 @@ def horoscope(request):
             ssign = form.cleaned_data['sign']
             try:
                 res = requests.get(f"https://www.astrostar.ru/horoscopes/main/{ssign}/day.html")
-            except RequestException:
-                return HttpResponse('Invalid Request to Horoscope')
+            except:
+                return render(request, 'main/bad.html')
             soup = BeautifulSoup(res.content, 'html.parser')
             data = soup.find("p")
             content = {"scope": data.text,
