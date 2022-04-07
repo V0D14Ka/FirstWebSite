@@ -1,12 +1,13 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-    Вход
+    Авторизация
 {% endblock %}
 
 {% block content %}
     {% load static %}
-    <h1 class="text-center">Вход</h1>
+    <h1 class="text-center">Авторизация</h1>
+    <center>
     <form method="post">
         {% csrf_token %}
         <div class="form-error">{{ form.non_field_errors }}</div>
@@ -16,4 +17,5 @@
         {% endfor %}
         <input class="btn btn-primary" type="submit" value="Войти">
     </form>
+    </center>
 {% endblock %}

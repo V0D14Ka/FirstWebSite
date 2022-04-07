@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Здесь может быть ваша реклама</h1>
+    {% if not request.user.is_authenticated %}
+        <center>
+        <h1 class="text-center1">Чтобы воспользоваться сайтом зарегестрируйтесь/авторизируйтесь!</h1>
+        </center>
+    {% endif %}
+    <h2 class="text-center">Здесь может быть ваша реклама</h2>
     <p class="text-center">Ну а пока тут только котик...</p>
     {% load static %}
     <img class='imagecenter' src="{% static 'img/image6.jpg' %}" alt="photo">

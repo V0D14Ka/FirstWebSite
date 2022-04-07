@@ -7,6 +7,7 @@
 {% block content %}
     {% load static %}
     <h1 class="text-center">Регистрация</h1>
+    <center>
     <form method="post">
         {% csrf_token %}
         {% for f in form %}
@@ -15,4 +16,5 @@
         {% endfor %}
         <input class="btn btn-primary" type="submit" value="Регистрация">
     </form>
+    </center>
 {% endblock %}

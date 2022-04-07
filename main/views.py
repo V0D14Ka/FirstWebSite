@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.contrib.sites import requests
 from django.shortcuts import render, redirect
@@ -106,6 +107,11 @@ class RegisterUser(CreateView):
     template_name = 'main/register.html'
     success_url = reverse_lazy('login')
 
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('homepage')
+
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
@@ -113,3 +119,8 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('homepage')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
