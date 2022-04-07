@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
+from django.contrib.auth.views import LoginView
 from django.contrib.sites import requests
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
-from django.conf import settings
+from django.urls import reverse_lazy
 from pyowm.commons.exceptions import PyOWMError
 import os
 import requests
-from requests import RequestException
-
-from .forms import EmailForm
+from django.views.generic import CreateView, DetailView, ListView
+from .forms import EmailForm, RegisterUserForm, LoginUserForm
 from .forms import WeatherForm
 from .forms import HoroscopeForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -26,7 +26,8 @@ mgr = owm.weather_manager()
 
 def index(request):
     posts = Post.objects.all()
-    return render(request, 'main/index.html', {'posts': posts})
+    context = {'posts': posts}
+    return render(request, 'main/index.html', context=context)
 
 
 def sendmail(request):
@@ -98,3 +99,17 @@ def horoscope(request):
                        'sign': ssign}
             return render(request, 'main/goodscope.html', context=content)
     return render(request, 'main/horoscope.html', {'form': form})
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'main/register.html'
+    success_url = reverse_lazy('login')
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'main/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('homepage')

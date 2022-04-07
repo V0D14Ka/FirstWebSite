@@ -25,3 +25,30 @@ body {
      background: #5b80b2;
      box-shadow: 0 15px 20px rgba(0,0,0,.1);
  }
+
+ .form-input {
+    width: 300px;
+    font-size: 16px;
+}
+
+.form-label {
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+}
+
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
+}
+
+.form-button {
+    min-width: 200px;
+    font-size: 16px;
+}
+
+div.article-panel p.last {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
