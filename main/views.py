@@ -1,4 +1,6 @@
 from bs4 import BeautifulSoup
+import os
+import requests
 
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
@@ -11,24 +13,21 @@ from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView, DetailView, ListView
-
-
-from pyowm.commons.exceptions import PyOWMError
-import os
-import requests
-from .forms import EmailForm, RegisterUserForm, LoginUserForm
-from .forms import WeatherForm
-from .forms import HoroscopeForm
 from django.http import HttpResponse, HttpResponseRedirect
-from pyowm import OWM
-from pyowm.utils.config import get_default_config
-from .models import *
-
 from django.contrib.auth import get_user_model
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
-from .tokens import account_activation_token
 from django.core.mail import send_mail
+
+from .tokens import account_activation_token
+from .models import *
+from .forms import EmailForm, RegisterUserForm, LoginUserForm
+from .forms import WeatherForm
+from .forms import HoroscopeForm
+
+from pyowm import OWM
+from pyowm.commons.exceptions import PyOWMError
+from pyowm.utils.config import get_default_config
 
 key_pyowm = os.environ['key_pyowm']
 
