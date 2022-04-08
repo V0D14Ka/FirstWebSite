@@ -17,7 +17,7 @@
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
               <a class="green" href="{% url "homepage"%}">Главная</a>
               {% if request.user.is_authenticated %}
-                  <p class="me-3 py-2 text-dark text-decoration-none">Привет {{ user.username }}</p>
+                  <p class="text_header">Привет, {{ user.username }}!</p>
                   <a class="green" href="{% url "sendmail"%}">Почта</a>
                   <a class="green" href="{% url "weather"%}">Погода</a>
                   <a class="green" href="{% url "horoscope"%}">Гороскоп</a>

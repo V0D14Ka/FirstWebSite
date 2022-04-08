@@ -26,6 +26,17 @@ body {
      box-shadow: 0 15px 20px rgba(0,0,0,.1);
  }
 
+ .text_header{
+    margin: 15px auto;
+    padding: 8px;
+    color: #5b80b2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
  .form-input {
     width: 300px;
     font-size: 16px;
