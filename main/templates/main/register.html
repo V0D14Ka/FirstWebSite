@@ -6,15 +6,19 @@
 
 {% block content %}
     {% load static %}
+    {% if not request.user.is_authenticated %}
     <h1 class="text-center">Регистрация</h1>
-    <center>
-    <form method="post">
-        {% csrf_token %}
-        {% for f in form %}
-            <p><label class="form-label" for="{{ f.id_for_label }}"> {{ f.label }}: </label> {{ f }}</p>
-            <div class="form-error">{{ f.errors }}</div>
-        {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Регистрация">
-    </form>
-    </center>
+        <center>
+        <form method="post">
+            {% csrf_token %}
+            {% for f in form %}
+                <p><label class="form-label" for="{{ f.id_for_label }}"> {{ f.label }}: </label> {{ f }}</p>
+                <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <input class="btn btn-primary" type="submit" value="Регистрация">
+        </form>
+        </center>
+    {% else %}
+        <h1 class="text-center">Вы уже авторизованы</h1>
+    {% endif %}
 {% endblock %}

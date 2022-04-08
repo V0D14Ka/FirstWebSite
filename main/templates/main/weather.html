@@ -7,16 +7,20 @@
 {% block content %}
     {% load static %}
     <center>
-    <form method="post">
-    <h2>Здесь вы можете узнать погоду в интересующем вас городе</h2>
-        {% csrf_token %}
-             <div class="form-group">
-            {{ form.as_p }}
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Узнать погоду">
-            </div>
+    {% if request.user.is_authenticated %}
+        <form method="post">
+        <h2>Здесь вы можете узнать погоду в интересующем вас городе</h2>
+            {% csrf_token %}
+                 <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Узнать погоду">
+                </div>
         </form>
+    {% else %}
+        <h1>Чтобы узнать погоду, пожалуйста, авторизируйтесь!</h1>
+    {% endif %}
     </center>
     <img class='imagecenter' src="{% static 'img/pogoda.jpg' %}" alt="photo">
 {% endblock %}

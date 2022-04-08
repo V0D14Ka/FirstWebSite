@@ -6,15 +6,19 @@
 
 {% block content %}
     <center>
-    <h2>Здесь вы можете отправить электронное письмо</h2>
-     <form method="post">
-        {% csrf_token %}
-             <div class="form-group">
-            {{ form.as_p }}
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Отправить">
-            </div>
-        </form>
+    {% if request.user.is_authenticated %}
+        <h2>Здесь вы можете отправить электронное письмо</h2>
+         <form method="post">
+            {% csrf_token %}
+                 <div class="form-group">
+                {{ form.as_p }}
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Отправить">
+                </div>
+         </form>
+    {% else %}
+        <h2>Чтобы отправить электронное письмо, пожалуйста, авторизируйтесь!</h2>
+    {% endif %}
     </center>
 {% endblock %}

@@ -7,16 +7,20 @@
 {% block content %}
     {% load static %}
     <center>
-    <form method="post">
-    <h1>Здесь вы можете узнать гороскоп на сегодня!</h1>
-        {% csrf_token %}
-             <div class="form-group">
-            {{ form.as_p }}
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Узнать гороскоп">
-            </div>
+    {% if request.user.is_authenticated %}
+        <form method="post">
+        <h1>Здесь вы можете узнать гороскоп на сегодня!</h1>
+            {% csrf_token %}
+                 <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Узнать гороскоп">
+                </div>
         </form>
+    {% else %}
+        <h1>Чтобы узнать гороскоп, авторизируйтесь!</h1>
+    {% endif %}
     <img class="imagecenter" src="{% static 'img/zodiac_signs/all.jpg' %}" alt="photo">
     </center>
 {% endblock %}
