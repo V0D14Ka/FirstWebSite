@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import random
+
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.contrib.sites import requests
@@ -10,10 +10,12 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
+from django.views.generic import CreateView, DetailView, ListView
+
+
 from pyowm.commons.exceptions import PyOWMError
 import os
 import requests
-from django.views.generic import CreateView, DetailView, ListView
 from .forms import EmailForm, RegisterUserForm, LoginUserForm
 from .forms import WeatherForm
 from .forms import HoroscopeForm
@@ -36,9 +38,6 @@ config_dict['language'] = 'ru'
 owm = OWM(key_pyowm, config_dict)
 mgr = owm.weather_manager()
 
-
-def randtoken():
-    return random.randint(1000,9999)
 
 def index(request):
     posts = Post.objects.all()
