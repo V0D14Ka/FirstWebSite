@@ -1,10 +1,15 @@
 from bs4 import BeautifulSoup
+import random
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.contrib.sites import requests
+from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode
 from pyowm.commons.exceptions import PyOWMError
 import os
 import requests
@@ -16,6 +21,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from pyowm import OWM
 from pyowm.utils.config import get_default_config
 from .models import *
+
+from django.contrib.auth import get_user_model
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
+from .tokens import account_activation_token
+from django.core.mail import send_mail
+
 key_pyowm = os.environ['key_pyowm']
 
 config_dict = get_default_config()
@@ -24,6 +36,9 @@ config_dict['language'] = 'ru'
 owm = OWM(key_pyowm, config_dict)
 mgr = owm.weather_manager()
 
+
+def randtoken():
+    return random.randint(1000,9999)
 
 def index(request):
     posts = Post.objects.all()
@@ -108,9 +123,35 @@ class RegisterUser(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('homepage')
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+        mail_subject = 'Активация вашего аккаунта'
+        message = render_to_string('main/emailconfirm.html', {
+            'user': user,
+            'domain': 'firstwebsitef.herokuapp.com',
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user),
+        })
+        to_email = form.cleaned_data.get('email')
+        send_mail(mail_subject, message, 'vodi4kaweb@mail.ru', [to_email])
+        return HttpResponse('Пожалуйста, подтвердите адрес электронной почты, вам было выслано сообщение с ссылкой '
+                            'для завершения регистрации')
+
+
+def activate(request, uidb64, token):
+    user = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = user.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, user.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Спасибо за подтверждение почты, теперь вы можете войти в аккаунт!')
+    else:
+        return HttpResponse('Ссылка активации недействительна')
 
 
 class LoginUser(LoginView):
@@ -124,3 +165,5 @@ class LoginUser(LoginView):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
