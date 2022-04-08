@@ -52,6 +52,12 @@ class RegisterUserForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("Пользователь с таким email уже существует!")
+        return email
+
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(max_length=12, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
