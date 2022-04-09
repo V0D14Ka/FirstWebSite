@@ -4,7 +4,7 @@ import requests
 
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
-from django.contrib.sites import requests
+# from django.contrib.sites import requests
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
