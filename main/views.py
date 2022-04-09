@@ -59,8 +59,8 @@ def sendmail(request):
                 send_mail(subject, message, from_email, [email])
             except:
                 return render(request, 'main/bad.html')
-            return render(request, 'main/sent.html', context=data)
-    return render(request, 'main/sendmail.html', {'form': form})
+            return render(request, 'main/sendmail/sent.html', context=data)
+    return render(request, 'main/sendmail/sendmail.html', {'form': form})
 
 
 def egg(request):
@@ -92,8 +92,8 @@ def weather(request):
                     "feel_like": feel_like,
                     "status": status,
                     "wind": wind}
-            return render(request, 'main/goodweather.html', context=data)
-    return render(request, 'main/weather.html', {'form': form})
+            return render(request, 'main/weather/goodweather.html', context=data)
+    return render(request, 'main/weather/weather.html', {'form': form})
 
 
 def horoscope(request):
@@ -111,13 +111,13 @@ def horoscope(request):
             data = soup.find("p")
             content = {"scope": data.text,
                        'sign': ssign}
-            return render(request, 'main/goodscope.html', context=content)
-    return render(request, 'main/horoscope.html', {'form': form})
+            return render(request, 'main/horoscope/goodscope.html', context=content)
+    return render(request, 'main/horoscope/horoscope.html', {'form': form})
 
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
-    template_name = 'main/register.html'
+    template_name = 'main/auth/register.html'
 
     def post(self, request, *args, **kwargs):
         form = RegisterUserForm(request.POST)
@@ -156,7 +156,7 @@ def activate(request, uidb64, token):
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
-    template_name = 'main/login.html'
+    template_name = 'main/auth/login.html'
 
     def get_success_url(self):
         return reverse_lazy('homepage')

@@ -13,7 +13,7 @@
     <h2 class="text-center">Здесь может быть ваша реклама</h2>
     <p class="text-center">Ну а пока тут только котик...</p>
     {% load static %}
-    <img class='imagecenter' src="{% static 'img/image6.jpg' %}" alt="photo">
+    <img class='imagecenter' src="{% static 'img/maincat.jpg' %}" alt="photo">
     {% if not request.user.is_authenticated %}
         <center>
         <a class="btn btn-primary" href="{% url "register"%}">Регистрация</a>
