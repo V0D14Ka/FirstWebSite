@@ -119,6 +119,9 @@ class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/auth/register.html'
 
+    # def form_valid(self, form):
+    #     return reverse_lazy('login')
+
     def post(self, request, *args, **kwargs):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
@@ -137,6 +140,8 @@ class RegisterUser(CreateView):
             context = {'email': to_email}
             send_mail(mail_subject, message, 'vodi4kaweb@mail.ru', [to_email])
             return render(request, 'main/email/emailcheck.html', context=context)
+        else:
+            return render(request, 'main/auth/register.html', {'form': form})
 
 
 def activate(request, uidb64, token):
