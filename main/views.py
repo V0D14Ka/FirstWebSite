@@ -118,23 +118,25 @@ def horoscope(request):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
-    success_url = reverse_lazy('login')
 
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        user.is_active = False
-        user.save()
-        mail_subject = 'Активация вашего аккаунта'
-        message = render_to_string('main/emailconfirm.html', {
-            'user': user,
-            'domain': 'firstwebsitef.herokuapp.com',
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-        })
-        to_email = form.cleaned_data.get('email')
-        send_mail(mail_subject, message, 'vodi4kaweb@mail.ru', [to_email])
-        return HttpResponse('Пожалуйста, подтвердите адрес электронной почты, вам было выслано сообщение с ссылкой '
-                            'для завершения регистрации')
+    def post(self, request, *args, **kwargs):
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Активация вашего аккаунта'
+            message = render_to_string('main/email/emailconfirm.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            context = {'email': to_email}
+            send_mail(mail_subject, message, 'vodi4kaweb@mail.ru', [to_email])
+            return render(request, 'main/email/emailcheck.html', context=context)
 
 
 def activate(request, uidb64, token):
@@ -147,9 +149,9 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse('Спасибо за подтверждение почты, теперь вы можете войти в аккаунт!')
+        return render(request, 'main/email/emailsucceed.html')
     else:
-        return HttpResponse('Ссылка активации недействительна')
+        return render(request, 'main/email/badmail.html')
 
 
 class LoginUser(LoginView):
@@ -162,6 +164,6 @@ class LoginUser(LoginView):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('homepage')
 
 

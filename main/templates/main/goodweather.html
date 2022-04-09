@@ -14,12 +14,12 @@
         <li><output>Статус: {{ status }}.</output></li>
     </ul>
     {% if temp > 20 %}
-        <img class='imagecenter' src="{% static 'img/temp20+.jpg' %}" alt="photo">
+        <img class='imagecenter' src="{% static 'img/tempcats/temp20+.jpg' %}" alt="photo">
     {% elif temp > 10 %}
-        <img class='imagecenter' src="{% static 'img/temp10+.jpg' %}" alt="photo">
+        <img class='imagecenter' src="{% static 'img/tempcats/temp10+.jpg' %}" alt="photo">
     {% elif temp >= 0 %}
-        <img class='imagecenter' src="{% static 'img/temp0+.jpeg' %}" alt="photo">
+        <img class='imagecenter' src="{% static 'img/tempcats/temp0+.jpeg' %}" alt="photo">
     {% elif temp < 0 %}
-        <img class='imagecenter' src="{% static 'img/temp-10+.jpg' %}" alt="photo">
+        <img class='imagecenter' src="{% static 'img/tempcats/temp-10+.jpg' %}" alt="photo">
     {% endif %}
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Ошибка
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <h1 class="text-center">Ссылка активации недействительна!</h1>
+    <img class='imagecenter' src="{% static 'img/badweather.jpeg' %}" alt="photo">
+{% endblock %}
