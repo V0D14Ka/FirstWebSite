@@ -77,7 +77,8 @@ def weather(request):
             try:
                 observation = mgr.weather_at_place(pplace)
             except PyOWMError:
-                return render(request, 'main/bad.html')
+                message = "Неккоректный город!"
+                return render(request, 'main/weather/weather.html', {'form': form, 'message': message})
             w = observation.weather
             temp = w.temperature('celsius')['temp']
             max_temp = w.temperature('celsius')['temp_max']
