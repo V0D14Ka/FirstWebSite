@@ -53,7 +53,7 @@ def sendmail(request):
             email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            from_email = "vodi4kaweb@mail.ru"
+            from_email = os.environ['DEFAULT_FROM_EMAIL']
             data = {'email': email}
             try:
                 send_mail(subject, message, from_email, [email])
@@ -130,6 +130,7 @@ class RegisterUser(CreateView):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
+            from_email = os.environ['DEFAULT_FROM_EMAIL']
             mail_subject = 'Активация вашего аккаунта'
             message = render_to_string('main/email/emailconfirm.html', {
                 'user': user,
@@ -139,7 +140,7 @@ class RegisterUser(CreateView):
             })
             to_email = form.cleaned_data.get('email')
             context = {'email': to_email}
-            send_mail(mail_subject, message, 'vodi4kaweb@mail.ru', [to_email])
+            send_mail(mail_subject, message, from_email, [to_email])
             return render(request, 'main/email/emailcheck.html', context=context)
         else:
             return render(request, 'main/auth/register.html', {'form': form})
@@ -171,5 +172,4 @@ class LoginUser(LoginView):
 def logout_user(request):
     logout(request)
     return redirect('homepage')
-
 
