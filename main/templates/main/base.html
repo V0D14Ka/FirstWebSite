@@ -21,6 +21,7 @@
                   <a class="green" href="{% url "weather"%}">Погода</a>
                   <a class="green" href="{% url "horoscope"%}">Гороскоп</a>
                   <p class="text_header">Привет, {{ user.username }}!</p>
+                  <a class="white" href="{% url "mypage"%}">Профиль</a>
                   <a class="red" href="{% url "logout"%}">Выход</a>
               {% endif %}
           </nav>

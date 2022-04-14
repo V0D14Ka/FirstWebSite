@@ -173,3 +173,6 @@ def logout_user(request):
     logout(request)
     return redirect('homepage')
 
+
+def mypage(request):
+    return render(request, 'main/mypage.html')
