@@ -13,5 +13,6 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
     path('register/', views.RegisterUser.as_view(), name='register'),
     path('emailVerification/<uidb64>/<token>', views.activate, name='emailActivate'),
-    path('mypage/', views.mypage, name='mypage')
+    path('mypage/', views.mypage, name='mypage'),
+    path('mypage/adduserpost/', views.adduserpost, name='adduserpost')
 ]

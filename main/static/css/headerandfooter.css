@@ -52,3 +52,29 @@ div.article-panel p.last {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+    div.article-panel {
+        background: #eee;
+        padding: 5px 10px 5px 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        color: #555;
+        border: 1px solid black;
+}
+div.article-panel p.first {
+    margin: 0;
+    float: left;
+}
+div.article-panel p.last {
+    margin: 0;
+    float: right;
+}
+
+ul.list-articles {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul.list-articles li {
+	border-bottom: 1px solid #ccc;
+}

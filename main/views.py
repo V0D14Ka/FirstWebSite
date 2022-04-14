@@ -21,7 +21,7 @@ from django.core.mail import send_mail
 
 from .tokens import account_activation_token
 from .models import *
-from .forms import EmailForm, RegisterUserForm, LoginUserForm
+from .forms import EmailForm, RegisterUserForm, LoginUserForm, UserPostForm
 from .forms import WeatherForm
 from .forms import HoroscopeForm
 
@@ -175,4 +175,31 @@ def logout_user(request):
 
 
 def mypage(request):
-    return render(request, 'main/mypage.html')
+    current_user = request.user
+    data = {'current_user': current_user,
+            'userposts': UserPost.objects.filter(user_id=current_user.id),
+            }
+    return render(request, 'main/mypage.html', context=data)
+
+
+def adduserpost(request):
+    current_user = request.user
+    # userposts = UserPost.objects.filter(user_id=current_user.id)
+
+    if request.method == 'GET':
+        form = UserPostForm()
+    else:
+        form = UserPostForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            content = form.cleaned_data.get('content')
+            try:
+                UserPost.objects.create(title=title, content=content, user_id=current_user.id)
+                return HttpResponseRedirect('/mypage')
+            except:
+                form.add_error(None, "Ошибка добавления поста")
+            data = {'current_user': current_user,
+                    'form': form,
+                    }
+            return render(request, 'main/adduserpost.html', context=data)
+    return render(request, 'main/adduserpost.html', {'form': form, 'current_user': current_user})

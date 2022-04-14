@@ -18,7 +18,7 @@ a.white{
 
 a.white {
    background-color: #ffffff;
-   border: 2px solid gray;
+   border: 2px solid black;
 }
 
 a.white:hover {

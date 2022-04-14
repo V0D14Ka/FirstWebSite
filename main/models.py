@@ -1,10 +1,10 @@
 from django.db import models
+import requests
 
 
 class Post(models.Model):
     title = models.CharField(max_length=250, verbose_name='Заголовок')
     content = models.TextField(blank=True, verbose_name='Текст поста')
-    photo = models.ImageField(upload_to='photos/', verbose_name='Фото')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     is_published = models.BooleanField(default=True, verbose_name='Публикация')
@@ -16,6 +16,22 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+        ordering = ['time_create', 'title']
+
+
+class UserPost(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Заголовок')
+    content = models.TextField(blank=True, verbose_name='Текст поста')
+    user_id = models.IntegerField(null=True)
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
+    time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Пост пользователя'
+        verbose_name_plural = 'Посты пользователей'
         ordering = ['time_create', 'title']
 
 
