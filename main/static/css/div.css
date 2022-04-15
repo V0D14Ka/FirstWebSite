@@ -1,3 +1,31 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    /*border: 2px black solid;*/
+    min-width: 380px;
+}
+
+.container.flex-start {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+.item {
+    background: #dddddd;
+    border: 2px cornflowerblue solid;
+    border-radius: 10px;
+    height: 600px;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: center;
+    padding: 1rem;
+    margin: 20px;
+    width: 380px;
+}
+
 .item h3 {
     font-family: Arial, serif;
     color: cornflowerblue;
@@ -17,37 +45,10 @@
 
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
-    /*border: 2px black solid;*/
-    min-width: 380px;
-}
-
-.container.flex-start {
-    align-items: flex-start;
-    justify-content: center;
-}
-
 .prokrutka {
     width: 380px; /* ширина нашего блока */
     height: 600px; /* высота нашего блока */
     background: #fff; /* цвет фона, белый */
-    border: 1px solid #C1C1C1; /* размер и цвет границы блока */
+    border: 2px cornflowerblue solid; /* размер и цвет границы блока */
     overflow: auto; /* свойство для прокрутки по горизонтали. Автоматом, если больше блока */
-}
-
-.item {
-    background: #dddddd;
-    border: 2px black solid;
-    border-radius: 10px;
-    height: 600px;
-    font-size: 2rem;
-    line-height: 1;
-    text-align: center;
-    padding: 1rem;
-    margin: 20px;
-    width: 380px;
 }
