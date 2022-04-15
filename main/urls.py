@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+
 # from django.views.defaults import server_error, page_not_found, permission_denied#
 
 
@@ -14,5 +15,9 @@ urlpatterns = [
     path('register/', views.RegisterUser.as_view(), name='register'),
     path('emailVerification/<uidb64>/<token>', views.activate, name='emailActivate'),
     path('mypage/', views.mypage, name='mypage'),
-    path('mypage/adduserpost/', views.adduserpost, name='adduserpost')
+    path('mypage/adduserpost/', views.adduserpost, name='adduserpost'),
+    path('send_friend_request/<int:userID>/', views.send_friend_request, name='send friend request'),
+    path('accept_friend_request/<int:requestID>/', views.accept_friend_request, name='accept friend request'),
+    path('mypage/friens/', views.myfriends, name='friends')
+
 ]

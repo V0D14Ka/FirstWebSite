@@ -3,13 +3,14 @@ import os
 import requests
 
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 # from django.contrib.sites import requests
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView, DetailView, ListView
@@ -44,6 +45,7 @@ def index(request):
     return render(request, 'main/index.html', context=context)
 
 
+@login_required
 def sendmail(request):
     if request.method == 'GET':
         form = EmailForm()
@@ -67,6 +69,7 @@ def egg(request):
     return render(request, 'main/egg.html')
 
 
+@login_required
 def weather(request):
     if request.method == 'GET':
         form = WeatherForm()
@@ -97,6 +100,7 @@ def weather(request):
     return render(request, 'main/weather/weather.html', {'form': form})
 
 
+@login_required
 def horoscope(request):
     if request.method == 'GET':
         form = HoroscopeForm()
@@ -169,19 +173,52 @@ class LoginUser(LoginView):
         return reverse_lazy('homepage')
 
 
+@login_required
 def logout_user(request):
     logout(request)
     return redirect('homepage')
 
 
+@login_required
 def mypage(request):
+    allusers = User.objects.all()
+    allrequests = FriendRequest.objects.filter(to_user=request.user.id)
     current_user = request.user
     data = {'current_user': current_user,
             'userposts': UserPost.objects.filter(user_id=current_user.id),
+            'allusers': allusers,
+            'allrequests': allrequests,
             }
     return render(request, 'main/mypage.html', context=data)
 
 
+def myfriends(request):
+    allusers = User.objects.all()
+    allrequests = FriendRequest.objects.filter(to_user=request.user.id)
+    friends = request.user.friends.all()
+    myrequests = FriendRequest.objects.filter(from_user=request.user.id)
+    allu = []
+    for user in allusers:
+        flag = True
+        for to in myrequests:
+            if user == to.to_user:
+                flag = False
+                break
+        if flag:
+            allu.append(user)
+    current_user = request.user
+    data = {'current_user': current_user,
+            'userposts': UserPost.objects.filter(user_id=current_user.id),
+            'allusers': allusers,
+            'allrequests': allrequests,
+            'friends': friends,
+            'myrequests': myrequests,
+            'allu': allu,
+            }
+    return render(request, 'main/friends.html', context=data)
+
+
+@login_required
 def adduserpost(request):
     current_user = request.user
     # userposts = UserPost.objects.filter(user_id=current_user.id)
@@ -195,7 +232,7 @@ def adduserpost(request):
             content = form.cleaned_data.get('content')
             try:
                 UserPost.objects.create(title=title, content=content, user_id=current_user.id)
-                return HttpResponseRedirect('/mypage')
+                return HttpResponseRedirect(reverse('mypage'))
             except:
                 form.add_error(None, "Ошибка добавления поста")
             data = {'current_user': current_user,
@@ -203,3 +240,29 @@ def adduserpost(request):
                     }
             return render(request, 'main/adduserpost.html', context=data)
     return render(request, 'main/adduserpost.html', {'form': form, 'current_user': current_user})
+
+
+@login_required
+def send_friend_request(request, userID):
+    from_user = request.user
+    to_user = User.objects.get(id=userID)
+    if not request.user.friends.filter(username=User.objects.get(id=userID)).exists():
+        friend_request, created = FriendRequest.objects.get_or_create(from_user=from_user, to_user=to_user)
+        if created:
+            return HttpResponseRedirect(reverse('friends'))
+        else:
+            return HttpResponse('already sent')
+    else:
+        return HttpResponse('already friend')
+
+
+@login_required
+def accept_friend_request(request, requestID):
+    friend_request = FriendRequest.objects.get(id=requestID)
+    if friend_request.to_user == request.user:
+        friend_request.to_user.friends.add(friend_request.from_user)
+        friend_request.from_user.friends.add(friend_request.to_user)
+        friend_request.delete()
+        return HttpResponseRedirect(reverse('friends'))
+    else:
+        return HttpResponse('friend request not accepted')

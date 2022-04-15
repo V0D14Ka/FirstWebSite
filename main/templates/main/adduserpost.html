@@ -7,13 +7,13 @@
 {% block content %}
     {% csrf_token %}
     <center>
-    <form method="post">
-        <h1>Добавить новую запись:</h1>
+        <form method="post">
+            <h1>Добавить новую запись:</h1>
             {% csrf_token %}
             {{ form.as_p }}
-             <div class="form-group">
-                 <input class="btn btn-primary" type="submit" value="Опубликовать">
-             </div>
-         </form>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Опубликовать">
+            </div>
+        </form>
     </center>
 {% endblock %}

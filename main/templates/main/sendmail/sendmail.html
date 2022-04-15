@@ -6,20 +6,16 @@
 
 {% block content %}
     <center>
-    {% if request.user.is_authenticated %}
         <h2>Здесь вы можете отправить электронное письмо</h2>
-         <form method="post">
+        <form method="post">
             {% csrf_token %}
-             {% for f in form %}
+            {% for f in form %}
                 <p>{{ f }}</p>
                 <div class="form-error">{{ f.errors }}</div>
             {% endfor %}
-             <div class="form-group">
-                 <input class="btn btn-primary" type="submit" value="Отправить">
-             </div>
-         </form>
-    {% else %}
-        <h2>Чтобы отправить электронное письмо, пожалуйста, авторизируйтесь!</h2>
-    {% endif %}
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Отправить">
+            </div>
+        </form>
     </center>
 {% endblock %}

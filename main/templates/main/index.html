@@ -7,7 +7,7 @@
 {% block content %}
     {% if not request.user.is_authenticated %}
         <center>
-        <h1 class="text-center1">Чтобы воспользоваться сайтом зарегестрируйтесь/авторизируйтесь!</h1>
+            <h1 class="text-center1">Чтобы воспользоваться сайтом зарегестрируйтесь/авторизируйтесь!</h1>
         </center>
     {% endif %}
     <h2 class="text-center">Здесь может быть ваша реклама</h2>
@@ -16,8 +16,8 @@
     <img class='imagecenter' src="{% static 'img/maincat.jpg' %}" alt="photo">
     {% if not request.user.is_authenticated %}
         <center>
-        <a class="btn btn-primary" href="{% url "register"%}">Регистрация</a>
-        <a class="btn btn-primary" href="{% url "login"%}">Войти</a>
+            <a class="btn btn-primary" href="{% url "register" %}">Регистрация</a>
+            <a class="btn btn-primary" href="{% url "login" %}">Войти</a>
         </center>
     {% endif %}
 {% endblock %}

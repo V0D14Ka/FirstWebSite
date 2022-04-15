@@ -8,10 +8,18 @@
     {% load static %}
     <h2 class="text-center">Погода в городе {{ place }} на текущий момент:</h2>
     <ul>
-        <li><output>Температура воздуха: {{ temp }} градусов по Цельсию.</output></li>
-        <li><output>Ощущается как: {{ feel_like }} градусов по Цельсию.</output></li>
-        <li><output>Порывы ветра достигают: {{ wind }} м/с.</output></li>
-        <li><output>Статус: {{ status }}.</output></li>
+        <li>
+            <output>Температура воздуха: {{ temp }} градусов по Цельсию.</output>
+        </li>
+        <li>
+            <output>Ощущается как: {{ feel_like }} градусов по Цельсию.</output>
+        </li>
+        <li>
+            <output>Порывы ветра достигают: {{ wind }} м/с.</output>
+        </li>
+        <li>
+            <output>Статус: {{ status }}.</output>
+        </li>
     </ul>
     {% if temp > 20 %}
         <img class='imagecenter' src="{% static 'img/tempcats/temp20+.jpg' %}" alt="photo">
