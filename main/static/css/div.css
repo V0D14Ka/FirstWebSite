@@ -14,7 +14,7 @@
 
 
 .item {
-    background: #dddddd;
+    background: white;
     border: 2px cornflowerblue solid;
     border-radius: 10px;
     height: 600px;
@@ -32,7 +32,7 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
     padding: 0;
 }
 
@@ -48,7 +48,9 @@
 .prokrutka {
     width: 380px; /* ширина нашего блока */
     height: 600px; /* высота нашего блока */
-    background: #fff; /* цвет фона, белый */
+    background: white; /* цвет фона, белый */
     border: 2px cornflowerblue solid; /* размер и цвет границы блока */
     overflow: auto; /* свойство для прокрутки по горизонтали. Автоматом, если больше блока */
 }
+
+

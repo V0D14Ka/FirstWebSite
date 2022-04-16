@@ -13,19 +13,25 @@
 </head>
 <body>
 <header>
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 ">
-        <a href="{% url "egg" %}" class="btn btn-primary">VoD14ka</a>
-        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <a class="green" href="{% url "homepage" %}">Главная</a>
+    <div class="containerhead flex-start ">
+        <div class="itemhead_left">
+            <a href="{% url "egg" %}" class="btn btn-primary abs">VoD14ka</a>
+        </div>
+        <div class="itemhead_center">
+            <a class="buttonhead pink" href="{% url "homepage" %}">Главная</a>
             {% if request.user.is_authenticated %}
-                <a class="green" href="{% url "sendmail" %}">Почта</a>
-                <a class="green" href="{% url "weather" %}">Погода</a>
-                <a class="green" href="{% url "horoscope" %}">Гороскоп</a>
-                <p class="text_header">Привет, {{ user.username }}!</p>
-                <a class="white" href="{% url "mypage" %}">Профиль</a>
-                <a class="red" href="{% url "logout" %}">Выход</a>
+                <a class="buttonhead blue" href="{% url "sendmail" %}">Почта</a>
+                <a class="buttonhead blue" href="{% url "weather" %}">Погода</a>
+                <a class="buttonhead blue" href="{% url "horoscope" %}">Гороскоп</a>
             {% endif %}
-        </nav>
+        </div>
+        <div class="itemhead_right">
+            {% if request.user.is_authenticated %}
+                <h class="text_header">{{ user.username }}</h>
+                <a class="btn btn-primary abs" href="{% url "mypage" %}">Профиль</a>
+                <a class="btn btn-primary abs" href="{% url "logout" %}">Выход</a>
+            {% endif %}
+        </div>
     </div>
 </header>
 <div class="content">
