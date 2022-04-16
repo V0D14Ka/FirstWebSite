@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User
-from django.core.mail import send_mail
 
 
 class EmailForm(forms.Form):
@@ -46,6 +45,7 @@ class HoroscopeForm(forms.Form):
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(max_length=12, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.EmailField(max_length=40, label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
+    first_name = forms.CharField(max_length=12, label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(max_length=30, label='Пароль',
                                 widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(max_length=30, label='Повтор пароля',
@@ -53,7 +53,7 @@ class RegisterUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "first_name", "password1", "password2")
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
