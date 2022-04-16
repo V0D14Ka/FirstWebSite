@@ -7,10 +7,10 @@
 {% block content %}
     {% if not request.user.is_authenticated %}
         <center>
-            <h1 class="text-center1">Чтобы воспользоваться сайтом зарегестрируйтесь/авторизируйтесь!</h1>
+            <h1 class="text-center1" style="font-size: 35px">Чтобы воспользоваться сайтом, авторизируйтесь!</h1>
         </center>
     {% endif %}
-    <h2 class="text-center">Здесь может быть ваша реклама</h2>
+    <h2 class="text-center" style="font-size: 35px">Здесь может быть ваша реклама</h2>
     <p class="text-center">Ну а пока тут только котик...</p>
     {% load static %}
     <img class='imagecenter' src="{% static 'img/maincat.jpg' %}" alt="photo">

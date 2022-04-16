@@ -8,7 +8,7 @@
     {% load static %}
     <center>
         <form method="post">
-            <h1>Здесь вы можете узнать гороскоп на сегодня!</h1>
+            <h1 style="font-size: 35px">Что же сегодня скажут звёзды...?</h1>
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}

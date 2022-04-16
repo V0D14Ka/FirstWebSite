@@ -6,7 +6,7 @@
 
 {% block content %}
     <center>
-        <h2>Здесь вы можете отправить электронное письмо</h2>
+        <h2 style="font-size: 35px">Отправить email письмо:</h2>
         <form method="post">
             {% csrf_token %}
             {% for f in form %}

@@ -8,7 +8,7 @@
     {% load static %}
     <center>
         <form method="post">
-            <h2>Здесь вы можете узнать погоду в интересующем вас городе</h2>
+            <h2 style="font-size: 35px">Узнайте погоду в интересующем вас городе!</h2>
             {% csrf_token %}
             {% for f in form %}
                 <p>{{ f }}</p>
