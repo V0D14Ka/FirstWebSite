@@ -1,10 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-import requests
 
 
 class User(AbstractUser):
     friends = models.ManyToManyField("User", blank=True)
+    photo = models.ImageField(upload_to="usersphoto", blank=True)
 
 
 class FriendRequest(models.Model):

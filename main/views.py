@@ -192,6 +192,10 @@ def myfriends(request):
             if user == to.to_user:
                 flag = False
                 break
+        for i in allrequests:
+            if user == i.from_user:
+                flag = False
+                break
         if flag:
             allu.append(user)
     current_user = request.user
@@ -220,7 +224,7 @@ def adduserpost(request):
             content = form.cleaned_data.get('content')
             try:
                 UserPost.objects.create(title=title, content=content, user_id=current_user.id)
-                return HttpResponseRedirect(reverse('mypage'))
+                return HttpResponseRedirect(reverse('profile', kwargs={'username': current_user}))
             except:
                 form.add_error(None, "Ошибка добавления поста")
             data = {'current_user': current_user,
