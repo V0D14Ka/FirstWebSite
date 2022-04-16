@@ -53,4 +53,91 @@
     overflow: auto; /* свойство для прокрутки по горизонтали. Автоматом, если больше блока */
 }
 
+.inform { /* див всей информации профиля кроме записей */
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    width: auto;
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+.informitemsleft { /*див фотографии с информации*/
+    width: 30%;
+    height: 100%;
+}
+
+.informitemcenter { /*див инфы*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    text-align: left;
+}
+
+.informitemsright { /* див кнопок */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    text-align: left;
+}
+
+.usernotes { /* общий див для всех записей*/
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    width: auto;
+    max-width: 1000px;
+    margin: auto;
+
+}
+
+.note { /*див записи*/
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+}
+
+.textnote { /*див содержимого записи */
+    background: white;
+    border: 2px cornflowerblue solid;
+    border-radius: 10px;
+    height: auto;
+    min-height: 150px;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+}
+
+.article-panell { /* див шапки записи */
+    background: lightgrey;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.first { /* левая часть шапки */
+    height: auto;
+    width: 50%;
+    text-align: left;
+    padding: 10px;
+}
+
+.last { /* правая часть шапки */
+    width: 50%;
+    height: auto;
+    text-align: right;
+    padding: 10px;
+}
 

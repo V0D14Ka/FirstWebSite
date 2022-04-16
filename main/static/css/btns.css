@@ -159,7 +159,7 @@ a.red:hover {
 }
 
 .buttonhead:hover.blue {
-    background: local;
+    background: #5b80b2;
     color: white;
     -webkit-text-stroke-width: 0;
 }

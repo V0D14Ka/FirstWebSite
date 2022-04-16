@@ -42,9 +42,8 @@
         <div class="item prokrutka">
             <h3>Мои друзья:</h3>
             {% for friend in friends %}
-                <h4>
-                    <hr>
-                    {{ friend }}</h4>
+                <hr>
+                <a class="buttonhead blue" href="{% url 'profile' friend %}">{{ friend }}</a>
             {% endfor %}
         </div>
     </div>

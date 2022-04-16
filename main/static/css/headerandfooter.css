@@ -18,7 +18,8 @@ body {
 #footer {
     padding: 7px; /* Поля вокруг текста */
     color: #5b80b2; /* Цвет текста */
-    width: 100%; /* Ширина слоя */
+    width: auto; /* Ширина слоя */
+    min-width: 1000px;
     flex: 0 0 auto;
 }
 
