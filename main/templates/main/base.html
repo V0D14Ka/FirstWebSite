@@ -28,7 +28,7 @@
         <div class="itemhead_right">
             {% if request.user.is_authenticated %}
                 <h class="text_header">{{ user.username }}</h>
-                <a class="btn btn-primary abs" href="{% url "mypage" %}">Профиль</a>
+                <a class="btn btn-primary abs" href="{% url "profile" request.user %}">Профиль</a>
                 <a class="btn btn-primary abs" href="{% url "logout" %}">Выход</a>
             {% endif %}
         </div>

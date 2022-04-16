@@ -14,7 +14,7 @@ from django.urls import reverse_lazy, reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView, DetailView, ListView
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import get_user_model
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
@@ -180,18 +180,6 @@ def logout_user(request):
 
 
 @login_required
-def mypage(request):
-    allusers = User.objects.all()
-    allrequests = FriendRequest.objects.filter(to_user=request.user.id)
-    current_user = request.user
-    data = {'current_user': current_user,
-            'userposts': UserPost.objects.filter(user_id=current_user.id),
-            'allusers': allusers,
-            'allrequests': allrequests,
-            }
-    return render(request, 'main/mypage.html', context=data)
-
-
 def myfriends(request):
     allusers = User.objects.all()
     allrequests = FriendRequest.objects.filter(to_user=request.user.id)
@@ -266,3 +254,21 @@ def accept_friend_request(request, requestID):
         return HttpResponseRedirect(reverse('friends'))
     else:
         return HttpResponse('friend request not accepted')
+
+
+@login_required
+def profile(request, username):
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+        current_user = request.user
+        posts = UserPost.objects.filter(user_id=user.id)
+        data = {
+            'user': user,
+            'posts': posts,
+            'current_user': current_user,
+            'userposts': UserPost.objects.filter(user_id=user.id),
+
+        }
+        return render(request, 'main/profile.html', context=data)
+    else:
+        raise Http404()

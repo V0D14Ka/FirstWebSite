@@ -14,18 +14,20 @@
 
     </style>
     <div class="wewe">
-        <h1 class="text-center">Мой профиль:</h1>
+        <h1 class="text-center">Профиль {{ user }}:</h1>
         <img class='imagecenter' src="{% static 'img/nonava.png' %}" alt="photo">
-        <h2>Email: {{ current_user.email }}</h2>
-        <h2>Username: {{ current_user }}</h2>
-        <h2>Имя : {{ current_user.first_name }}</h2>
-        <a href="{% url 'friends' %}" class="btn btn-primary">Друзья</a>
+        <h2>Email: {{ user.email }}</h2>
+        <h2>Username: {{ user }}</h2>
+        <h2>Имя : {{ user.first_name }}</h2>
+        {% if user == current_user %}
+            <a href="{% url 'friends' %}" class="btn btn-primary">Друзья</a>
+        {% endif %}
         <center>
-            <h3>Ваши записи:</h3>
+            <h3>Записи {{ user }}:</h3>
             <hr>
             {% if not userposts.exists %}
                 <hr>
-                <h3>Пока что здесь пусто... Напишите что-нибудь!</h3>
+                <h3>Пока что здесь пусто...</h3>
                 <hr>
             {% else %}
                 <ul class="list-articles">
@@ -37,7 +39,9 @@
                 </ul>
             {% endif %}
             <hr>
+        {% if user == current_user %}
             <a href="{% url 'adduserpost' %}" class="btn btn-primary">Добавить запись</a>
+        {% endif %}
         </center>
     </div>
 {% endblock %}
