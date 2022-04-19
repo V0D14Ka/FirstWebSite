@@ -18,6 +18,7 @@ urlpatterns = [
     path('mypage/adduserpost/', views.adduserpost, name='adduserpost'),
     path('send_friend_request/<int:userID>/', views.send_friend_request, name='send friend request'),
     path('accept_friend_request/<int:requestID>/', views.accept_friend_request, name='accept friend request'),
-    path('myfriends/', views.myfriends, name='friends')
+    path('myfriends/', views.myfriends, name='friends'),
+    path('changeprofile/', views.changeprofile, name='changeprofile')
 
 ]

@@ -61,6 +61,17 @@ class RegisterUserForm(UserCreationForm):
             raise forms.ValidationError("Пользователь с таким email уже существует!")
         return email
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        alphabet = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+        if not alphabet.isdisjoint(username.lower()):
+            raise forms.ValidationError("Используйте только латиницу!")
+        return username
+
+
+class ChangeUserInfo(forms.Form):
+    username = forms.CharField(max_length=12, label='Изменить Username', widget=forms.TextInput(attrs={'class': 'form-input'}))
+
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(max_length=12, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))

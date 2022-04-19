@@ -22,7 +22,7 @@ from django.core.mail import send_mail
 
 from .tokens import account_activation_token
 from .models import *
-from .forms import EmailForm, RegisterUserForm, LoginUserForm, UserPostForm
+from .forms import EmailForm, RegisterUserForm, LoginUserForm, UserPostForm, ChangeUserInfo
 from .forms import WeatherForm
 from .forms import HoroscopeForm
 
@@ -276,3 +276,33 @@ def profile(request, username):
         return render(request, 'main/profile.html', context=data)
     else:
         raise Http404()
+
+
+@login_required
+def changeprofile(request):
+    if request == 'GET':
+        user = request.user
+        form = ChangeUserInfo()
+    else:
+        form = ChangeUserInfo(request.POST)
+        if form.is_valid():
+            alphabet = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+            current_user = request.user
+            username = form.cleaned_data.get('username')
+            if not alphabet.isdisjoint(username.lower()):
+                form.add_error('username', "Используйте только латиницу!")
+            elif current_user.username == username:
+                form.add_error('username', "Вы ввели ваш текущий Username!")
+            elif User.objects.filter(username=username).exists():
+                form.add_error('username', "Пользователь с таким Username уже существует!")
+            else:
+                try:
+                    User.objects.filter(username=current_user).update(username=username)
+                    return HttpResponseRedirect(reverse('profile', kwargs={'username': username}))
+                except:
+                    form.add_error(None, "Ошибка изменения данных")
+                    data = {'current_user': request.user,
+                            'form': form,
+                            }
+                    return render(request, 'main/changeprofile.html', context=data)
+    return render(request, 'main/changeprofile.html', {'form': form, 'current_user': request.user})

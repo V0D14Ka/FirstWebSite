@@ -19,6 +19,8 @@
         <div class="informitemsright">
             {% if user == current_user %}
                 <a href="{% url 'friends' %}" class="btn btn-primary">Мои друзья</a>
+                <h1> </h1>
+                <a href="{% url 'changeprofile' %}" class="btn btn-primary"> Изменить профиль</a>
             {% endif %}
         </div>
     </div>
