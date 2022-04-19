@@ -207,7 +207,7 @@ def myfriends(request):
             'myrequests': myrequests,
             'allu': allu,
             }
-    return render(request, 'main/friends.html', context=data)
+    return render(request, 'main/profile/friends.html', context=data)
 
 
 @login_required
@@ -230,8 +230,8 @@ def adduserpost(request):
             data = {'current_user': current_user,
                     'form': form,
                     }
-            return render(request, 'main/adduserpost.html', context=data)
-    return render(request, 'main/adduserpost.html', {'form': form, 'current_user': current_user})
+            return render(request, 'main/profile/adduserpost.html', context=data)
+    return render(request, 'main/profile/adduserpost.html', {'form': form, 'current_user': current_user})
 
 
 @login_required
@@ -273,7 +273,7 @@ def profile(request, username):
             'userposts': UserPost.objects.filter(user_id=user.id),
 
         }
-        return render(request, 'main/profile.html', context=data)
+        return render(request, 'main/profile/profile.html', context=data)
     else:
         raise Http404()
 
@@ -304,5 +304,5 @@ def changeprofile(request):
                     data = {'current_user': request.user,
                             'form': form,
                             }
-                    return render(request, 'main/changeprofile.html', context=data)
-    return render(request, 'main/changeprofile.html', {'form': form, 'current_user': request.user})
+                    return render(request, 'main/profile/changeprofile.html', context=data)
+    return render(request, 'main/profile/changeprofile.html', {'form': form, 'current_user': request.user})
