@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import os
 import requests
-
+from django.contrib import messages
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -136,7 +136,7 @@ class RegisterUser(CreateView):
             current_site = get_current_site(request)
             from_email = os.environ['DEFAULT_FROM_EMAIL']
             mail_subject = 'Активация вашего аккаунта'
-            message = render_to_string('main/email/emailconfirm.html', {
+            messsage = render_to_string('main/email/emailconfirm.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -144,8 +144,12 @@ class RegisterUser(CreateView):
             })
             to_email = form.cleaned_data.get('email')
             context = {'email': to_email}
-            send_mail(mail_subject, message, from_email, [to_email])
+            send_mail(mail_subject, messsage, from_email, [to_email])
+            # messages.success(request,
+            #                  "Отлично! Для регистрации осталось только подтвердить"
+            #                  " вашу почту. Мы отправили вам письмо с ссылкой.")
             return render(request, 'main/email/emailcheck.html', context=context)
+            # return HttpResponseRedirect(reverse('homepage'))
         else:
             return render(request, 'main/auth/register.html', {'form': form})
 
