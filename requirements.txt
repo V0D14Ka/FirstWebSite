@@ -10,6 +10,4 @@ bs4
 requests~=2.27.1
 django.utils.six
 celery
-redis
-celery
 redis==4.3.4
