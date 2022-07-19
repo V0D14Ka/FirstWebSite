@@ -8,3 +8,6 @@ psycopg2
 Pillow
 bs4
 requests~=2.27.1
+django.utils.six
+celery
+redis==4.3.4
