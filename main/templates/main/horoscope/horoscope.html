@@ -7,16 +7,16 @@
 {% block content %}
     {% load static %}
     <center>
-    <form method="post">
-    <h1>Здесь вы можете узнать гороскоп на сегодня!</h1>
-        {% csrf_token %}
-             <div class="form-group">
-            {{ form.as_p }}
+        <form method="post">
+            <h1 style="font-size: 35px">Что же сегодня скажут звёзды...?</h1>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Узнать гороскоп">
             </div>
         </form>
-    <img class="imagecenter" src="{% static 'img/zodiac_signs/all.jpg' %}" alt="photo">
+        <img class="imagecenter" src="{% static 'img/zodiac_signs/all.jpg' %}" alt="photo">
     </center>
 {% endblock %}

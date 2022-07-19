@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+        <h1 class="text-center">Изменить профиль:</h1>
+        <center>
+            <form method="post">
+                {% csrf_token %}
+                {% for f in form %}
+                    <p><label class="form-label" for="{{ f.id_for_label }}"> {{ f.label }}: </label> {{ f }}</p>
+                    <div class="form-error">{{ f.errors }}</div>
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Изменить">
+            </form>
+        </center>
+{% endblock %}

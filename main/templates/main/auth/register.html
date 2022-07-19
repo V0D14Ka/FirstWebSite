@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    {% if not request.user.is_authenticated %}
+        <h1 class="text-center">Регистрация</h1>
+        <center>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                    <p><label class="form-label" for="{{ f.id_for_label }}"> {{ f.label }}: </label> {{ f }}</p>
+                    <div class="form-error">{{ f.errors }}</div>
+                {% endfor %}
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+                <input class="btn btn-primary" type="submit" value="Регистрация">
+            </form>
+        </center>
+    {% else %}
+        <h1 class="text-center">Вы уже авторизованы</h1>
+    {% endif %}
+{% endblock %}

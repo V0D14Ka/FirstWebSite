@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Пасхалочка
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container flex-start">
+        <div class="item prokrutka">
+            <h3>Все пользователи: </h3>
+            <h4>{% for user in allusers %}
+                {% if not user.is_superuser %}
+                    {% if not user in request.user.friend.all and user != request.user %}
+                        <h4>
+                            <hr>
+                            {{ user }}
+                            {% if not user in current_user.friends.all %}
+                                {% if user in allu %}
+                                    <a class="button2 blue" href="/send_friend_request/{{ user.id }}/">Отправить запрос
+                                        дружбы</a>
+                                {% endif %}
+                            {% endif %}
+                        </h4>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </h4>
+        </div>
+
+        <div class="item prokrutka">
+            <h3>Запросы в друзья:</h3>
+            {% for friend_request in allrequests %}
+                <h4>
+                    <hr>
+                    {{ friend_request.from_user }}
+                    <a class="button2 blue" href="/accept_friend_request/{{ friend_request.id }}/">Принять запрос
+                        дружбы</a>
+                </h4>
+            {% endfor %}
+        </div>
+
+        <div class="item prokrutka">
+            <h3>Мои друзья:</h3>
+            {% for friend in friends %}
+                <hr>
+                <a class="buttonhead blue" href="{% url 'profile' friend %}">{{ friend }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

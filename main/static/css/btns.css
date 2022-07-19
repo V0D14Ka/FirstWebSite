@@ -1,0 +1,185 @@
+a.white {
+    border-radius: 20px;
+    color: black;
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-family: Arical, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 20px auto;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: background-color 0.1s linear;
+    -moz-transition: background-color 0.1s linear;
+    -o-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;
+}
+
+a.white {
+    background-color: #ffffff;
+    border: 2px solid black;
+}
+
+a.white:hover {
+    background-color: gray;
+    color: white;
+    border: 2px solid white;
+}
+
+a.green {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    color: #fff;
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 20px auto;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: background-color 0.1s linear;
+    -moz-transition: background-color 0.1s linear;
+    -o-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;
+}
+
+a.green {
+    background-color: rgb(43, 153, 91);
+    border: 1px solid rgb(33, 126, 74);
+}
+
+a.green:hover {
+    background-color: rgb(75, 183, 141);
+}
+
+a.red {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    color: #fff;
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 20px auto;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: background-color 0.1s linear;
+    -moz-transition: background-color 0.1s linear;
+    -o-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;
+}
+
+a.red {
+    background-color: red;
+    border: 1px solid rgb(33, 126, 74);
+}
+
+a.red:hover {
+    background-color: #ff7676;
+}
+
+.button2 {
+    border: 2px solid black;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Roboto, Verdana, Tahoma, sans;
+    padding: 4px 4px;
+    border-radius: 100px;
+    color: #fff;
+}
+
+.button2 i {
+    margin-right: 4px;
+}
+
+.button2 + .button {
+    margin-left: 6px;
+}
+
+.button2.blue {
+    background: #2196F3;
+}
+
+.button2:hover.blue {
+    background: #0059b2;
+    color: white;
+}
+
+.buttonhead {
+    border: 2px solid black;
+    outline: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+    font-size: 16px;
+    font-family: Roboto, Verdana, Tahoma, sans;
+    padding: 6px 6px;
+    border-radius: 7px;
+    color: blue;
+}
+
+.buttonhead i {
+    margin-right: 4px;
+}
+
+.buttonhead + .button {
+    margin-left: 6px;
+}
+
+.buttonhead.pink {
+    background: pink;
+    color: black;
+}
+
+.buttonhead:hover.pink {
+    background: local;
+    color: white;
+    -webkit-text-stroke-width: 0;
+}
+
+.buttonhead.blue {
+    background: white;
+    color: blue;
+}
+
+.buttonhead:hover.blue {
+    background: #5b80b2;
+    color: white;
+    -webkit-text-stroke-width: 0;
+}
+
+.buttonhead.redd {
+    background: #ba2121;
+    color: white;
+    -webkit-text-stroke-width: 0;
+}
+
+.buttonhead:hover.redd {
+    background: red;
+    color: white;
+    -webkit-text-stroke-width: 0;
+}
+
+.abs {
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
