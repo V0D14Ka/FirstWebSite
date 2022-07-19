@@ -10,7 +10,5 @@ from main.tasks import send_spam
 
 @receiver(post_save, sender=UserPost)
 def make_spam(sender, instance, **kwargs):
-    # owner = instance.user_id
-    # title = instance.title
-    # send_spam.delay(owner, title)
-    send_mail('Новое видео', 'kre', EMAIL_HOST_USER, ['minecraft35510880@gmail.com'])
+    owner = instance.user_id
+    send_spam.delay(owner)

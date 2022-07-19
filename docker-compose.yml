@@ -9,12 +9,12 @@ services:
     ports:
       - '6379:6379'
 
-  project:
+  backend:
     restart: "no"
     build:
       dockerfile: Dockerfile
     command: sh -c "gunicorn MySite.wsgi --bind 0.0.0.0:8000 -w 4"
-    container_name: project
+    container_name: project1
     image: backend_image
     ports:
       - '8000:8000'
